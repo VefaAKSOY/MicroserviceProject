@@ -10,7 +10,6 @@ namespace Catalog.API.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly IProductRepository _repository;
         private readonly ICatalogContext _context;
         public ProductRepository(ICatalogContext context)
         {
