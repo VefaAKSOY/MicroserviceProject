@@ -33,6 +33,15 @@ namespace Catalog.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Catalog.API", Version = "v1" });
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AnyOrigin", builder =>
+                {
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod();
+                });
+            });
 
             services.AddScoped<ICatalogContext, CatalogContext>();
             services.AddScoped<IProductRepository, ProductRepository>();
@@ -51,6 +60,9 @@ namespace Catalog.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            
+            app.UseCors("AnyOrigin");
 
             app.UseEndpoints(endpoints =>
             {
